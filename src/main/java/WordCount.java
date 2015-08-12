@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.lang.Iterable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import com.google.common.base.Strings;
 import org.apache.hadoop.hive.conf.HiveConf;
@@ -51,6 +52,10 @@ public class WordCount {
         SparkClient client = SparkClientFactory.createClient(conf, HIVECONF);
 
         JobHandle<Long> handle = client.submit(new SparkJob());
+        while(!handle.isDone()){
+
+        }
+        System.out.println(handle.get());
         System.out.println(handle.getState());
     }
 
